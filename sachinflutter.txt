@@ -1,0 +1,834 @@
+
+=>1.first devloper app(text , center, material)                             
+
+import 'package:flutter/material.dart';
+
+
+void main() {
+   runApp(
+   Material(
+     color: Colors.blue,
+     child:  Center (
+     child:Text(
+     "i am sachin",
+     textDirection: TextDirection.ltr,
+     style: TextStyle(color: Colors.white, fontSize: 50.0 ),
+   ) //text
+  )   //center
+   )  //material
+  );
+}
+
+
+=>2.scaffold and appbar     
+
+import 'package:flutter/material.dart';
+
+
+void main() {
+  runApp(
+  MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: "my app Title",
+    home:  Scaffold(
+      appBar: AppBar(title: Text("My Appbar")),
+      body:Material(
+          color: Colors.blue,
+          child:  Center (
+              child:Text(
+                "i am sachin",
+                textDirection: TextDirection.ltr,
+                style: TextStyle(color: Colors.white, fontSize: 50.0 ),
+              )  //text
+          )     //center
+      ),        //material
+    )           //scaffold
+
+    )          //materialapp
+  );
+}
+
+=>3.table in flutter
+import 'package:flutter/material.dart';
+
+
+void main() {
+  runApp(
+      MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: "my app Title",
+          home: Scaffold(
+            appBar: AppBar(title: Text("My Appbar")),
+            body: Material(
+                child: Container(
+                  margin: EdgeInsets.all(10.0),
+                  child: Table(
+                    border: TableBorder.all(),
+                    children: [TableRow(
+                        children: [
+                          Text("First Name",style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                          Text("Last Name",style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                        ]
+                    ),TableRow(
+                        children: [
+                          Text("Sachin",style: TextStyle(fontSize: 20.0),  textAlign: TextAlign.center),
+                          Text("Saini",style: TextStyle(fontSize: 20.0), textAlign: TextAlign.center),
+                        ]
+                    )     //tablerow
+                    ],
+                  ),        //table
+                )           //container
+            ),            //material
+          )                   //sacffold
+      )                       //material app
+  );
+}
+
+
+=>4.code optimization or code execute using the claas or function or object
+import 'package:flutter/material.dart';
+
+
+void main() => runApp(HomeScreen());
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "my app Title",
+        home: Scaffold(
+          appBar: AppBar(title: Text("My Appbar")),
+          body: Material(
+              child: Container(
+                margin: EdgeInsets.all(10.0),
+                child: Table(
+                  border: TableBorder.all(),
+                  children: [TableRow(
+                      children: [
+                        Text("First Name", style: TextStyle(
+                            fontSize: 30.0, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center),
+                        Text("Last Name", style: TextStyle(
+                            fontSize: 30.0, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center),
+                      ]
+                  ), TableRow(
+                      children: [
+                        Text("Sachin", style: TextStyle(fontSize: 20.0),
+                            textAlign: TextAlign.center),
+                        Text("Saini", style: TextStyle(fontSize: 20.0),
+                            textAlign: TextAlign.center),
+                      ]
+                  )
+                  ],
+                ),
+              )
+          ),
+        )
+    );
+  }
+
+
+}
+=>5.Flutter statefullwidget
+import "package:flutter/material.dart";
+void main() {
+  runApp(
+      MaterialApp(
+          title: "simple form",
+          home: SimpleForm()
+      )
+  );
+}
+class SimpleForm extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _SimpleFormState();
+  }
+}
+ class _SimpleFormState extends State<SimpleForm> {
+   String name = "";
+
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+       appBar: AppBar(
+         title: Text("Simple Form"),
+       ),
+       body: Container(
+         margin: EdgeInsets.all(30.0),
+         child: Column(
+           children: <Widget>[
+             TextField(
+               onSubmitted: (String username) {
+                 setState(() {
+                   name = username;
+                 });
+
+               },
+             ),
+             Text(
+                 "Name is $name",
+                     style:TextStyle(fontSize: 25.0),
+
+             )  //text
+           ],    //<widget>
+         ),  //column
+       ),    //container
+     );    //scaffold
+   }
+ }
+=>6(i)bootom navigation bar with select(home about and services)
+import 'package:flutter/material.dart';
+import 'package:flutter_project/samplepage.dart';(used for other class call or package import)
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: "Bottom App Menu",
+    home: BottomMenu(),
+  ));
+}
+
+class BottomMenu extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _BottomMenuState();
+  }
+}
+
+class _BottomMenuState extends State<BottomMenu> {
+  int _selectedItem = 0;
+  var _pagesData = [Homepage(), Aboutpage(), Servicespage()];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Bottom App Menu")),
+      body: Center(
+        child: _pagesData[_selectedItem],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.info), label: "About"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.cleaning_services), label: "Services"),
+          ],
+          currentIndex: _selectedItem,
+          onTap: (setValue) {
+            setState(() {
+              _selectedItem = setValue;
+            });
+          }),
+    );
+  }
+}
+
+
+
+=>6(ii)code for using bottom navigation data show(here is create new file (sample pages.dart))
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+  return Scaffold(
+    body: Center(
+      child: Text("Home page Data") ,
+
+
+    ),
+
+  );
+  }
+}
+class AboutPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text("About  page Data") ,
+
+
+      ),
+
+    );
+  }
+}
+class ServicesPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text("Services page Data") ,
+
+
+      ),
+
+    );
+  }
+}
+=>7(i)
+import 'package:flutter/material.dart';
+import 'package:flutter_project/detail.dart';
+
+void main() {
+  runApp(MaterialApp(
+    title: "Navigation test",
+    home: MyNavigation(),
+  ));
+}
+
+class MyNavigation extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyNavigation();
+  }
+}
+
+class _MyNavigation extends State<MyNavigation> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+      title: Text("Navigation Tutorial"),
+    ),
+      body :Center(
+        child:ElevatedButton(
+       child: Text("Click Here"),
+          onPressed:() {
+            Navigator.push(context,
+                MaterialPageRoute(builder:
+                    (context) => MyPageDetail()));
+          },
+        ),
+      ) ,
+    );
+  }
+}
+=>7(ii)for details
+import 'package:flutter/material.dart';
+
+class MyPageDetail extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Detail page")),
+      body: Center(
+        child: Column(
+          children: <Widget>[Text("Detail Page")],
+        ),
+      ),
+    );
+  }
+}
+
+=>8(i)Drawer menu
+import 'package:flutter/material.dart';
+import 'package:flutter_project/settingpage.dart';
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: "my app",
+    home:MyDrawer(),
+  ));
+}
+class MyDrawer extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return _MyDrawerState();
+  }
+}
+class _MyDrawerState extends State<MyDrawer>{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("My App"),),
+      drawer:Drawer(
+        child: Column(
+          children:<Widget>[
+            Container(
+              color: Theme.of(context).primaryColor,
+              width: double.infinity,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(top:30),
+                    width: 50,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                        image: DecorationImage(
+                            image: NetworkImage("https://media.istockphoto.com/photos/yorkshire-sitting-in-front-of-a-white-background-picture-id508410282?b=1&k=20&m=508410282&s=170667a&w=0&h=vyP7kKw5Lxubb-eg14zFwYcIOSoUz0x0l1Q7s4CcV5k=")
+                            )
+                    ),
+              ),
+                Text(
+                  "I am a Dog",
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.white,
+                  ),
+                )
+          ],
+      )
+            ),
+            ListTile(
+              title: Text("Home"),
+              leading: Icon(Icons.home),
+              onTap:null,
+            ),
+            ListTile(
+              title: Text("Setting"),
+              leading: Icon(Icons.settings),
+              onTap:(){
+                Navigator.of(context).pop();
+                Navigator.push(context, MaterialPageRoute(builder:
+                (context)=>SettingPage()
+                ));
+
+              },
+
+            ),
+            ListTile(
+              title: Text("Logout"),
+              leading: Icon(Icons.logout),
+              onTap:null,
+            )
+    ],
+    )
+    ),
+
+      body:Center(
+      child: Text("Home page"),
+      ),
+    );
+  }
+}
+
+=>8(ii)for when click on the any text then move the next page
+import 'package:flutter/material.dart';
+
+class SettingPage extends StatelessWidget {  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title:Text("Setting Page"),  ),
+      body: Center(
+        child: Text("Setting Page"),
+      ),
+
+    );
+  }
+}
+
+
+=>9. splash screen or enter for the next screen with timer
+
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+    MaterialApp(
+      title:"splash screen",
+          home: SplashScreen(),
+    ),
+  );
+}
+class SplashScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return SplashScreenState();
+  }
+}
+class SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+        Duration(seconds: 3),
+            () =>
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder:
+                (BuildContext context) => NextScreen()))
+    );
+  }
+
+  @override
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("SplashScreen"),
+
+      ),
+      body: Center(
+        child: Image.asset('assets/sunil.png')
+      ),
+    );
+  }
+
+}
+
+
+class NextScreen extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+  return Scaffold(
+    appBar :AppBar(
+      title: Text("Next Screen"),
+    ),
+    body: Center(
+      child: Text("Next Screen Text",
+      style: TextStyle(fontSize: 40.0),),
+    ),
+  );
+  }
+}
+
+=>10.(i)(sycncornous concept)
+import 'package:flutter/material.dart';
+
+
+void main()
+{
+
+  return runApp(
+    MaterialApp(
+      title: "Async",
+      home:TestAsync()
+
+
+    )
+
+  );
+}
+clickMefun(){
+  print("Test1");
+  print("Test2");
+  print("Test3");
+  print("Test4");
+}
+class TestAsync extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+
+  return Scaffold(
+  appBar: AppBar(title: Text("Async"),),
+  body:Center(
+  child:Container(
+  child: ElevatedButton(
+  child:Text("Click me"),
+  onPressed: (){
+    clickMefun();
+  }
+  ),
+  ),
+  ),
+  );
+
+  }
+
+}
+
+=>10.(ii)Asyncornous concept (left)
+=>11. Api fetch karna (like database code etc(it is based on asycncornous request))[http package import and yml file(http)]
+
+
+=>12. Acoordion in flutter(iske liye hum getwidget app ka use kar rhe or iska package import kra rhe h or hum yaml file ke andar depedencies add kar lete h)
+import 'package:flutter/material.dart';
+import 'package:getwidget/getwidget.dart';//import package
+
+
+void main(){
+  runApp(
+    MaterialApp(
+      home: MyAccord()));
+
+}
+class  MyAccord extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+   return Scaffold(
+     appBar: AppBar(title:Text("MY app"),),
+     body: Container(
+       child:Column(
+         children: <Widget>[
+           GFAccordion(
+             collapsedIcon: Icon(Icons.add),
+             expandedIcon: Icon(Icons.minimize),
+             title: "Lorem ipsum ",
+             content: "Masectetur adipiscing stas et. jdhjhd dbhqhdjhqwdj hdwhqwdh hdwjwhdhj hudhwuhbhuidwhw jhdj",
+           ),
+           GFAccordion(
+             collapsedIcon: Icon(Icons.add),
+             expandedIcon: Icon(Icons.minimize),
+             title: "Lorem ipsum ",
+             content: "Masectetur adipiscing stas et. jdhjhd dbhqhdjhqwdj hdwhqwdh hdwjwhdhj hudhwuhbhuidwhw jhdj",
+           ),
+
+         ],
+       ),
+     ),
+   );
+  }
+
+}
+=>13.Validation form (validation left)
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyForm()
+    ),
+
+  );
+}
+class MyForm extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+  return MyFormState();
+  }
+
+}
+class MyFormState extends State <MyForm>{
+  var _myFormkey=GlobalKey<FormState>();
+  @override
+
+  Widget build(BuildContext context) {
+          return Scaffold(
+            appBar: AppBar (title: Text("My Form"),),
+            body:Container(
+              padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 15.0),
+              child: Form(
+                child: Column(
+                  key: _myFormkey,
+                  children: <Widget>[
+                    TextFormField(
+                      /*validator: (String msg){
+                        if(msg.isEmpty){
+                          return "plese enter name";
+                        }
+                        if(msg.length<3){
+                          return "Name is less 3 char";
+                        }
+                        return null;
+                      },*/
+                      decoration: InputDecoration(
+                        labelText: "Name",
+                        hintText: "Enter Your Name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular (20.0),
+
+                  )
+
+                    ),
+              ),
+                    TextFormField(
+                      /*validator: (String msg){
+                        if(msg.isEmpty){
+                          return "plese enter name";
+                        }
+                        if(msg.length<3){
+                          return "Name is less 3 char";
+                        }
+                        return null;
+                      },*/
+                      decoration: InputDecoration(
+                          labelText: "Name",
+                          hintText: "Enter Your Name",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular (20.0),
+
+                          )
+
+                      ),
+                    ),
+              ],
+                ),
+
+              ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.done),
+              onPressed: (){
+                _myFormkey.currentState?.validate();
+
+              },
+            ),
+
+
+
+          );
+  }
+
+
+}
+
+=>14. Cured bootomnavigation
+
+
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/material.dart';
+ void main(){
+   runApp(MaterialApp(
+     home: MyBotNav(),
+   ));
+
+ }
+ class MyBotNav extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+   return MyBotNavState();
+  }
+ }
+ class MyBotNavState extends State< MyBotNav>{
+  @override
+  Color bgcolor=Colors.blueAccent;
+  var txt="Home Page";
+
+
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: bgcolor,
+      appBar: AppBar(
+      title: Text("My App"), ),
+      body:Center(
+      child:Text("Home Page"),
+
+
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: bgcolor,
+        items: [
+          Icon(Icons.login),
+          Icon(Icons.search),
+          Icon(Icons.app_registration),
+
+
+        ],
+        onTap: (index){
+          setState(){
+            if(index==0){
+
+               txt="Login  Page";
+              Color bgcolor=Colors.blueAccent;
+            }
+            if(index==1){
+
+              txt="Search Page";
+              Color bgcolor=Colors.redAccent;
+            }
+            if(index==2){
+
+               txt="Regestration  Page";
+              Color bgcolor=Colors.pinkAccent;
+            }
+
+          }
+        }
+      ),
+
+    );
+  }
+
+  }
+
+
+=>15.(ii)cured navigator
+import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
+void main() => runApp(MaterialApp(home: BottomNavBar()));
+
+class BottomNavBar extends StatefulWidget {
+  @override
+  _BottomNavBarState createState() => _BottomNavBarState();
+}
+
+class _BottomNavBarState extends State<BottomNavBar> {
+  int _page = 0;
+  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        bottomNavigationBar: CurvedNavigationBar(
+          key: _bottomNavigationKey,
+          index: 0,
+          height: 60.0,
+          items: <Widget>[
+            Icon(Icons.add, size: 30),
+            Icon(Icons.list, size: 30),
+            Icon(Icons.compare_arrows, size: 30),
+            Icon(Icons.call_split, size: 30),
+            Icon(Icons.perm_identity, size: 30),
+          ],
+          color: Colors.white,
+          buttonBackgroundColor: Colors.white,
+          backgroundColor: Colors.blueAccent,
+          animationCurve: Curves.easeInOut,
+          animationDuration: Duration(milliseconds: 600),
+          onTap: (index) {
+            setState(() {
+              _page = index;
+            });
+          },
+          letIndexChange: (index) => true,
+        ),
+        body: Container(
+          color: Colors.blueAccent,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(_page.toString(), textScaleFactor: 10.0),
+                ElevatedButton(
+                  child: Text('Go To Page of index 1'),
+                  onPressed: () {
+                    final CurvedNavigationBarState? navBarState =
+                        _bottomNavigationKey.currentState;
+                    navBarState?.setPage(1);
+                  },
+                )
+              ],
+            ),
+          ),
+        ));
+  }
+}
+
+=>16.Snack bar in flutter(It means if user click on the any text then show the a message)
+import 'package:flutter/material.dart';
+
+
+void main(){
+  runApp(MaterialApp(
+  home:MySnackBar(),
+  ),
+  );
+}
+class MySnackBar extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+   return Scaffold(
+     appBar: AppBar(title: Text("Snack Bar"),),
+    body: Builder(builder: (context){
+      return Center(
+        child: ElevatedButton(
+            child: Text("Show snack bar"),
+            onPressed:(){
+              final snackbar=SnackBar(content: Text(" i am sachin"));
+              Scaffold.of(context).showSnackBar(snackbar);
+            }),
+
+      );
+
+    })
+   );
+  }
+
+=>17.Carosal slider (phone in yutube dowload)
+
